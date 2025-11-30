@@ -1,6 +1,6 @@
 # PINGVIN-320KG
 
-A tiny Linux-based system for messing around with minimal setups. It's got a custom `rootfs`, BusyBox for basic tools, my own `mpkg` package manager, and some networking chops. Perfect for lightweight or embedded stuff.
+A tiny Linux-based system for messing around with minimal setups. It's got a custom `rootfs`, BusyBox for basic tools, my own `ascart` package manager, and some networking chops. Perfect for lightweight or embedded stuff.
 
 ## What's Inside
 
@@ -18,7 +18,7 @@ A tiny Linux-based system for messing around with minimal setups. It's got a cus
 
 ## Features
 
-- `mpkg`: My custom package manager. Check available packages at [mpkg-server](https://github.com/Loxsete/mpkg-server).
+- `ascart`: My custom package manager. Check available packages at [mpkg-server](https://github.com/Loxsete/ascart).
 - `fastfetch`: Quick system info tool.
 - Networking works out of the box.
 
