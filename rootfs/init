@@ -1,7 +1,10 @@
 #!/bin/sh
 
 clear
-mkdir -p /proc /sys /dev /tmp /etc
+mkdir -p /proc /sys /dev /tmp /etc /var
+mkdir -p /var/cache/
+mkdir -p /var/cache/mpkg
+mkdir -p /usr/lib/gcc/x86_64-linux-gnu/14.2.0
 
 mount -t proc none /proc || exit 1
 mount -t sysfs none /sys || exit 1
@@ -12,7 +15,7 @@ mount -t tmpfs none /tmp || exit 1
 [ -e /dev/console ] || mknod -m 600 /dev/console c 5 1
 [ -e /dev/tty ] || mknod -m 666 /dev/tty c 5 0
 
-echo "pingvin320kg" > /proc/sys/kernel/hostname
+echo "ascartlinux" > /proc/sys/kernel/hostname
 ip link set lo up
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
@@ -52,6 +55,35 @@ done
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 export HOME=/root
 export LD_LIBRARY_PATH=/usr/lib:/lib64
+
+
+# ASCART
+
+mkdir -p /etc/ascart
+mkdir -p /var/ascart
+mkdir -p /var/log/
+mkdir -p /var/db/ascart
+
+cat > /etc/ascart/ascart.conf << 'EOF'
+PKG_REPO_URL="https://raw.githubusercontent.com/Loxsete/ascart-repo/main"
+PKG_DB_PATH="/var/lib/ascart"
+PKG_CACHE_PATH="/var/cache/ascart"
+EOF
+
+mkdir -p /var/lib/ascart
+mkdir -p /var/cache/ascart
+
+echo "Downloading repo.db from ascart..."
+if command -v curl >/dev/null 2>&1; then
+    curl -L -f --fail-early -o /var/lib/ascart/repo.db \
+        https://raw.githubusercontent.com/Loxsete/ascart-repo/main/repo.db || echo "No secessfully repo.db"
+elif command -v wget >/dev/null 2>&1; then
+    wget -O /var/lib/ascart/repo.db \
+        https://raw.githubusercontent.com/Loxsete/ascart-repo/main/repo.db || echo "No secessfully repo.db"
+else
+    echo "curl of wget install pls"
+fi
+
 
 while true; do
     setsid sh -c 'exec sh </dev/console >/dev/console 2>&1'
