@@ -1,4 +1,4 @@
-# PINGVIN-320KG
+# Ascart-linux
 
 A tiny Linux-based system for messing around with minimal setups. It's got a custom `rootfs`, BusyBox for basic tools, my own `ascart` package manager, and some networking chops. Perfect for lightweight or embedded stuff.
 
