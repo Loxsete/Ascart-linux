@@ -26,9 +26,8 @@ A tiny Linux-based system for messing around with minimal setups. It's got a cus
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/Loxsete/PINGVIN-320KG.git
-   cd PINGVIN-320KG
-   compile linux kernel
+   git clone https://github.com/Loxsete/Ascart-linux.git
+   cd Ascart-linux
    chmod +x run.sh
    run.sh
    ```
